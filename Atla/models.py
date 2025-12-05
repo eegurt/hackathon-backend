@@ -26,3 +26,10 @@ class Object(models.Model):
 
     def __str__(self):
         return self.name
+
+class PriorityScore(models.Model):
+    object = models.ForeignKey(Object, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    def __str__(self):
+        return self.object.name
+        
