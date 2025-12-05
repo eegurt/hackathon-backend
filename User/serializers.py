@@ -86,6 +86,7 @@ class UserTokenObtainSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True)
     access = serializers.CharField(read_only=True)
     refresh = serializers.CharField(read_only=True)
+    user_type = serializers.CharField(read_only=True)
 
     def validate(self, data):
         email = data.get('email')
