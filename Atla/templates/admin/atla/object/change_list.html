@@ -1,0 +1,8 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools-items %}
+{{ block.super }}
+<li>
+    <a href="{% url 'admin:atla_object_import_xls' %}" class="button">Импорт XLSX</a>
+</li>
+{% endblock %}

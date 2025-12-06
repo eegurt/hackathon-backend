@@ -8,6 +8,7 @@ router.register(r'water-types', WaterTypeViewSet)
 router.register(r'objects', ObjectViewSet)
 router.register(r'priority-scores', PriorityScoreViewSet)
 
+
 urlpatterns = [
     path('', include(router.urls)),
 ]

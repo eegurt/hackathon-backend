@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>Импорт объектов из XLSX</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><input type="file" name="file" accept=".xlsx" required></p>
+    <p><button type="submit" class="button default">Загрузить</button></p>
+  </form>
+  <p>Ожидаются колонки: id, name, region_id, resource_type_id, water_type_id, fauna, passport_date, technical_condition, latitude, longitude, pdf, priority, created_at.</p>
+  <p><a href="{% url 'admin:atla_object_changelist' %}">Назад к списку</a></p>
+{% endblock %}

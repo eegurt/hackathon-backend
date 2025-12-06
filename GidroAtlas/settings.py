@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'corsheaders',
+    'django_filters',
     'User',
-    'Atla',
+    'Atla.apps.AtlaConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # REST framework and API docs
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ],
 }
 
 SPECTACULAR_SETTINGS = {
@@ -154,3 +159,5 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@gidroatlas.info')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', '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')
