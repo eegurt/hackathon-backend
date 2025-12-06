@@ -27,6 +27,12 @@ SECRET_KEY = 'django-insecure-3h6!#u4a_pz+4%v&@ak6kgmtq6mp3rvo40m41%2vsq(65_i368
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://back.gidroatlas.info",
+    "https://gidroatlas.info",
+    "localhost:8000",
+    "localhost:3000",
+]
 
 
 # Application definition
