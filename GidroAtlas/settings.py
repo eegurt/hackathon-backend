@@ -154,7 +154,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Программа для отправки емайлов
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'email_backend.UnsafeEmailBackend'
 EMAIL_HOST = 'mail.gidroatlas.info'
 EMAIL_PORT = 465
 EMAIL_USE_TLS= False
