@@ -154,7 +154,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Программа для отправки емайлов
-EMAIL_BACKEND = 'ai_bot.email_backend.UnsafeEmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST', '')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() in ('true', '1', 'yes')
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() in ('true', '1', 'yes')
