@@ -200,6 +200,7 @@ class ObjectAdmin(admin.ModelAdmin):
         }
         return TemplateResponse(request, "admin/atla/object/import_xls.html", context)
 
+admin.site.register(Region)
 
 admin.site.register(ResourceType)
 admin.site.register(WaterType)
