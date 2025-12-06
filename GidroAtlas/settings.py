@@ -154,7 +154,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Программа для отправки емайлов
-EMAIL_BACKEND = 'email_backend.UnsafeEmailBackend'
+EMAIL_BACKEND = 'GidroAtlas.email_backend.UnsafeEmailBackend'
 EMAIL_HOST = 'mail.gidroatlas.info'
 EMAIL_PORT = 465
 EMAIL_USE_TLS= False
