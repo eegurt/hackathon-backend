@@ -8,10 +8,8 @@ from datetime import date
 
 @receiver(post_save, sender=Object)
 def update_priority_score(sender, instance: Object, created, **kwargs):
-    # считаем скор
     score = calculate_priority_score(instance, today=date.today())
 
-    # определяем уровень
     if score >= 12:
         level = PriorityLevel.HIGH
     elif score >= 6:
@@ -24,6 +22,5 @@ def update_priority_score(sender, instance: Object, created, **kwargs):
     priority_obj.level = level
     priority_obj.save()
 
-    # поддерживаем старое поле приоритета в объекте, если оно ещё используется
-    instance.priority = score
-    instance.save(update_fields=["priority"])
+    # Обновляем priority у Object без вызова сигналов
+    Object.objects.filter(id=instance.id).update(priority=score)
