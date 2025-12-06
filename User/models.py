@@ -71,7 +71,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             new_id = random.randint(1000000, 9999999)
             # Используем прямой импорт модели для избежания циклических зависимостей
             from django.apps import apps
-            User = apps.get_model('user', 'User')
-            if not User.objects.filter(id=new_id).exists():
+            UserModel = apps.get_model('User', 'User')
+            if not UserModel.objects.filter(id=new_id).exists():
                 return new_id
         raise ValueError("Не удалось сгенерировать уникальный ID пользователя после {} попыток".format(max_attempts))
