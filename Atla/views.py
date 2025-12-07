@@ -276,3 +276,13 @@ class PriorityScoreViewSet(viewsets.ModelViewSet):
             "level": level,
             "status": "updated"
         }, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=["get"], url_path="by-object")
+    def get_by_object(self, request, pk=None):
+        """
+        Получить PriorityScore по ID объекта (obj_id).
+        """
+        obj = get_object_or_404(Object, pk=pk)
+        priority, _ = PriorityScore.objects.get_or_create(obj=obj)
+        serializer = self.get_serializer(priority)
+        return Response(serializer.data, status=status.HTTP_200_OK)

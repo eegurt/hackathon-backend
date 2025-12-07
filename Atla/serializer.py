@@ -21,9 +21,14 @@ class WaterTypeSerializer(serializers.ModelSerializer):
 
 
 class PriorityScoreSerializer(serializers.ModelSerializer):
+    object_id = serializers.PrimaryKeyRelatedField(
+        source="obj",
+        read_only=True
+    )
+
     class Meta:
         model = PriorityScore
-        fields = '__all__'
+        fields = ['id', 'object_id', 'obj', 'score', 'level', 'formula_version', 'updated_at']
 
 
 
