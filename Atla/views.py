@@ -4,7 +4,13 @@ from django.http import HttpResponse
 from io import BytesIO
 from openpyxl import Workbook, load_workbook
 from .models import ResourceType, WaterType, Object, PriorityScore, Region
-from .serializer import ResourceTypeSerializer, WaterTypeSerializer, ObjectSerializer, PriorityScoreSerializer
+from .serializer import (
+    RegionSerializer,
+    ResourceTypeSerializer,
+    WaterTypeSerializer,
+    ObjectSerializer,
+    PriorityScoreSerializer,
+)
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
@@ -26,6 +32,11 @@ class ObjectFilter(django_filters.FilterSet):
             "fauna": ["exact"],
             "technical_condition": ["exact"],
         }
+
+
+class RegionViewSet(viewsets.ModelViewSet):
+    queryset = Region.objects.all()
+    serializer_class = RegionSerializer
 
 
 class ResourceTypeViewSet(viewsets.ModelViewSet):

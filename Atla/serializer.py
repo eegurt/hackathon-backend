@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import ResourceType, WaterType, Object, PriorityScore
+from .models import ResourceType, WaterType, Object, PriorityScore, Region
+
+
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = "__all__"
 
 
 class ResourceTypeSerializer(serializers.ModelSerializer):
