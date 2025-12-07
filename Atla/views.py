@@ -14,6 +14,7 @@ from .serializer import (
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
 from .services.priority import calculate_priority_score
 from .models import PriorityLevel
 from datetime import date
@@ -55,6 +56,7 @@ class ObjectViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
     search_fields = ["name"]
     filterset_class = ObjectFilter
+    parser_classes = [MultiPartParser, FormParser]
 
     @action(detail=False, methods=["get"])
     def export_xls(self, request):
