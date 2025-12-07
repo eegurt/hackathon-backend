@@ -41,6 +41,7 @@ class ObjectSerializer(serializers.ModelSerializer):
     )
     # Явно указываем формат для схемы Swagger/OpenAPI
     pdf.swagger_schema_fields = {"type": "string", "format": "binary"}
+    pdf_url = serializers.SerializerMethodField(read_only=True)
     priority_score = serializers.SerializerMethodField()
     priority_level = serializers.SerializerMethodField()
 
@@ -60,6 +61,7 @@ class ObjectSerializer(serializers.ModelSerializer):
             "pdf",
             "priority",  # если хочешь оставить старое поле
             "created_at",
+            "pdf_url",
             "priority_score",
             "priority_level",
         ]
@@ -72,4 +74,16 @@ class ObjectSerializer(serializers.ModelSerializer):
     def get_priority_level(self, obj) -> str | None:
         if hasattr(obj, "priority_score"):
             return obj.priority_score.level
+        return None
+
+    def get_pdf_url(self, obj) -> str | None:
+        """
+        Возвращает абсолютный URL файла, если он загружен.
+        """
+        request = self.context.get("request")
+        if obj.pdf:
+            url = obj.pdf.url
+            if request is not None:
+                return request.build_absolute_uri(url)
+            return url
         return None
