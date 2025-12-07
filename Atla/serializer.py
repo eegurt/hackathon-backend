@@ -34,6 +34,7 @@ class PriorityScoreSerializer(serializers.ModelSerializer):
 
 class ObjectSerializer(serializers.ModelSerializer):
     pdf = serializers.FileField(required=False, allow_null=True, use_url=False)
+    pdf.swagger_schema_fields = {"type": "string", "format": "binary"}
     priority_score = serializers.SerializerMethodField()
     priority_level = serializers.SerializerMethodField()
 
