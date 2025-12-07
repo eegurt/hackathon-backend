@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3h6!#u4a_pz+4%v&@ak6kgmtq6mp3rvo40m41%2vsq(65_i368'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-3h6!#u4a_pz+4%v&@ak6kgmtq6mp3rvo40m41%2vsq(65_i368')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -157,15 +157,15 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Программа для отправки емайлов
-EMAIL_BACKEND = 'GidroAtlas.email_backend.UnsafeEmailBackend'
-EMAIL_HOST = 'mail.gidroatlas.info'
-EMAIL_PORT = 465
-EMAIL_USE_TLS= False
-EMAIL_USE_SSL= True
-EMAIL_HOST_USER = 'noreply@gidroatlas.info'
-EMAIL_HOST_PASSWORD = 'qwerty1234'
-DEFAULT_FROM_EMAIL = 'noreply@gidroatlas.info'
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'GidroAtlas.email_backend.UnsafeEmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'mail.gidroatlas.info')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', '465'))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'False').lower() in ('true', '1', 'yes')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'True').lower() in ('true', '1', 'yes')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'noreply@gidroatlas.info')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'qwerty1234')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@gidroatlas.info')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-OPENROUTER_API_KEY = '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'
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', '')
