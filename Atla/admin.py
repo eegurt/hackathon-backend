@@ -204,4 +204,3 @@ admin.site.register(Region)
 
 admin.site.register(ResourceType)
 admin.site.register(WaterType)
-admin.site.register(PriorityScore)
