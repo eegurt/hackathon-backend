@@ -169,3 +169,6 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@gidroatlas.info')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', '')
+
+# Custom user model
+AUTH_USER_MODEL = 'User.User'
